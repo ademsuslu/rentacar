@@ -2,9 +2,10 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <div className="d-flex gap-2 font-monospace">
-      <span className="text-danger">Rent </span> A{" "}
-      <span className="text-danger">Car</span>
+    <div className="d-flex gap-1 font-monospace logo">
+      <span className="logo-a">Rent </span>
+      <span className="text-dark">A</span>
+      <span className="logo-a">Car</span>
     </div>
   );
 };
