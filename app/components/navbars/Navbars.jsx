@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Logo from "../Logo/Logo";
 import Link from "next/link";
-import { NavData } from "./NavData";
+import { NavData } from "../data/Data";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 
@@ -14,8 +14,8 @@ function Navbars() {
   const [activeLink, setActiveLink] = useState("");
   return (
     <Container fluid>
-      <Row className="justify-content-center">
-        <Col lg={10} className="">
+      <Row>
+        <Col className="p-0">
           <Navbar expand="md">
             <Link className="navbar-brand " href="/">
               <Logo />

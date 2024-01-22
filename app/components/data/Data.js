@@ -28,3 +28,21 @@ export const NavData = [
     url: "/communication",
   },
 ];
+export const BlogData = [
+  {
+    name: "Araç Kiralarken Nelere Dikkat Edilm...",
+    url: "/",
+  },
+  {
+    name: "Rent a Car Sitesi Nasıl Açılır?",
+    url: "/",
+  },
+  {
+    name: "Kiralama İçin Araç Seçimi",
+    url: "/",
+  },
+  {
+    name: "Araç Kiralama Platformu nasıl Olmal...",
+    url: "/",
+  },
+];

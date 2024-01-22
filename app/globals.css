@@ -47,3 +47,7 @@ body,
   --bs-btn-disabled-border-color: #ff690f !important;
   --bs-btn-border-color: #ff690f !important;
 }
+.saklıdır {
+  color: var(--renk-orange);
+  font-weight: 500;
+}
