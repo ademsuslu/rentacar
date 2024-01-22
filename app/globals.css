@@ -17,6 +17,9 @@ body,
   color: var(--renk-orange);
 }
 
+.nav-link {
+  font-size: clamp(0.875rem, 0rem + 100vw, 1.125rem) !important;
+}
 .nav-link:hover {
   color: var(--renk-orange) !important;
 }

@@ -14,9 +14,9 @@ function Navbars() {
   const [activeLink, setActiveLink] = useState("");
   return (
     <Container fluid>
-      <Row>
-        <Col className=" ">
-          <Navbar expand="md" className="">
+      <Row className="justify-content-center">
+        <Col lg={10} className="">
+          <Navbar expand="md">
             <Link className="navbar-brand " href="/">
               <Logo />
             </Link>
@@ -41,7 +41,7 @@ function Navbars() {
                 ))}
               </Nav>
               <Button className="fs-6 btn-orange  font-normal">
-                Rezervasyon <SlCalender />
+                <SlCalender />
               </Button>
             </Navbar.Collapse>
           </Navbar>
