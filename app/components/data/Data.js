@@ -125,3 +125,46 @@ export const kiralamaKosullari = [
     ],
   },
 ];
+export const ssSorularCevaplar = [
+  {
+    soru: "Soru 1: Kiralama süresini nasıl belirleyebilirim?",
+    cevap:
+      "Kiralama süresini rezervasyon yaparken seçebilirsiniz. Minimum kiralama süresi 1 gün.",
+  },
+  {
+    soru: "Soru 2: Ücretlendirme nasıl çalışıyor?",
+    cevap:
+      "Ücretlendirme günlük bazda yapılır. Ek ücretler (sigorta, vergiler, havaalanı vergisi) ayrıca belirtilir.",
+  },
+  {
+    soru: "Soru 3: İptal politikası nedir?",
+    cevap:
+      "İptal politikası rezervasyon tarihine bağlı olarak değişiklik gösterebilir. Detaylı bilgi için lütfen politika sayfamızı ziyaret edin.",
+  },
+  {
+    soru: "Soru 4: Hangi ödeme yöntemlerini kabul ediyorsunuz?",
+    cevap:
+      "Kredi kartı ve banka havalesi gibi çeşitli ödeme yöntemlerini kabul ediyoruz.",
+  },
+  {
+    soru: "Soru 5: Araç teslimat yerini nasıl seçebilirim?",
+    cevap:
+      "Araç rezervasyonu sırasında teslimat noktasını seçebilirsiniz. Belirli teslimat noktaları için ek ücretler uygulanabilir.",
+  },
+  {
+    soru: "Soru 6: Sigorta kapsamı neyi içerir?",
+    cevap:
+      "Temel sigorta kapsamı araç hasarını içerir. Detaylı bilgi için lütfen sigorta politikamızı inceleyin.",
+  },
+  {
+    soru: "Soru 7: Hangi marka ve modelleri kiralayabilirim?",
+    cevap:
+      "Farklı marka ve modellerde birçok araç seçeneği sunuyoruz. Mevcut araçları görmek için sitemizi ziyaret edebilirsiniz.",
+  },
+  {
+    soru: "Soru 8: Yurtdışına çıkma izni var mı?",
+    cevap:
+      "Evet, ancak yurtdışına çıkarken ek belgeler ve ücretler gerekebilir. Detaylı bilgi için müşteri hizmetleriyle iletişime geçin.",
+  },
+  //... Diğer soru ve cevaplar
+];

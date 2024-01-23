@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbars from "./components/navbars/Navbars";
 import Footer from "./components/footer/Footer";
 import { Col, Container, Row } from "react-bootstrap";
+import Head from "next/head";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {

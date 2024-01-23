@@ -82,6 +82,7 @@ body::-webkit-scrollbar-thumb {
   --bs-accordion-active-color: var(--bs-primary-text-emphasis);
   --bs-accordion-active-bg: var(--renk-orange) !important;
 }
+
 .accordion {
   color: #ddd !important;
 }
