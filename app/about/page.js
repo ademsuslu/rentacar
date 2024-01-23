@@ -5,7 +5,7 @@ export default function Page() {
     <Container>
       <Row className="mt-2">
         <Col className="p-0">
-          <h3 className="saklıdır">Ben Kimiz?</h3>
+          <h3 className="saklıdır">Biz Kimiz?</h3>
           <p>
             Hoş Geldiniz! Biz, RentAuto ekibi olarak, seyahatlerinizi daha kolay
             ve keyifli hale getirmek için buradayız. RentAuto, her türlü taşıma
