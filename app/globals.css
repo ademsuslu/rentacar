@@ -89,3 +89,39 @@ body::-webkit-scrollbar-thumb {
 .hesaplarımız-head {
   font-size: clamp(1.125rem, 0rem + 100vw, 1.375rem);
 }
+/*OVERLAY */
+.image-container {
+  position: relative;
+  width: 100%; /* Resmin genişliği */
+  height: 200px; /* Resmin yüksekliği */
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.image-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  bottom: -70px; /* Başlangıçta altta başlaması için */
+  left: 0;
+  width: 100% !important;
+  /* Overlay rengi (siyah, %70 şeffaflık) */
+  color: #fff;
+  background-color: var(--renk-orange);
+  opacity: 0.9;
+  font-weight: bolder;
+  padding: 10px;
+  transition: bottom 0.3s ease; /* Animasyonlu geçiş */
+}
+.overlay a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.image-container:hover .overlay {
+  bottom: 0; /* Hover olduğunda yukarı çıkması için */
+}

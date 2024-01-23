@@ -168,3 +168,106 @@ export const ssSorularCevaplar = [
   },
   //... Diğer soru ve cevaplar
 ];
+export const blogData = [
+  {
+    id: 1,
+    baslik: "Araç Kiralama İpuçları",
+    img: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay: "Araç kiralamak isteyenler için faydalı ipuçları ve püf noktaları.",
+  },
+  {
+    id: 2,
+    baslik: "Yolculuk İçin En İyi Araç Modelleri",
+    img: "https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay: "Uzun yolculuklar için en uygun araç modellerini keşfedin.",
+  },
+  {
+    id: 3,
+    baslik: "Sigorta Seçenekleri ve Öneriler",
+    img: "https://images.unsplash.com/photo-1493238792000-8113da705763?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Araç kiralarken hangi sigorta seçeneklerini tercih etmeniz gerektiği hakkında bilgiler.",
+  },
+  {
+    id: 4,
+    baslik: "Kış Aylarında Araç Kiralama",
+    img: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Soğuk hava koşullarında araç kiralamak için almanız gereken önlemler.",
+  },
+  {
+    id: 5,
+    baslik: "Araç İade İşlemi Nasıl Yapılır?",
+    img: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1583&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Araç kiralama sürecini tamamladıktan sonra aracı nasıl iade edeceğinize dair bilgiler.",
+  },
+  {
+    id: 6,
+    baslik: "Yurtdışında Araç Kiralama Rehberi",
+    img: "https://images.unsplash.com/photo-1485291571150-772bcfc10da5?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Yurtdışında seyahat ederken araç kiralamak için dikkat etmeniz gerekenler.",
+  },
+  {
+    id: 7,
+    baslik: "Eko-Friendly Araç Kiralama",
+    img: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay: "Çevre dostu araçları tercih ederek doğaya katkı sağlayın.",
+  },
+  {
+    id: 8,
+    baslik: "Kiralık Araçlarda Yakıt Seçenekleri",
+    img: "https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Araç kiralarken yakıt seçeneklerini değerlendirme ve tasarruf ipuçları.",
+  },
+  {
+    id: 9,
+    baslik: "Araç Kiralama ile Şehir Keşfi",
+    img: "https://images.unsplash.com/photo-1507136566006-cfc505b114fc?q=80&w=1442&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay: "Bir şehri araç kiralayarak keşfetmenin avantajları ve öneriler.",
+  },
+  {
+    id: 10,
+    baslik: "Lastik Bakımı ve Değişimi",
+    img: "https://images.unsplash.com/photo-1499062918700-389fa905494e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Kiralık araçlarda lastik bakımını nasıl yapabilir ve lastikleri ne zaman değiştirmelisiniz?",
+  },
+  {
+    id: 11,
+    baslik: "Araç Kiralama ve Güvenlik Önlemleri",
+    img: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay: "Araç kiralarken almanız gereken güvenlik önlemleri ve öneriler.",
+  },
+  {
+    id: 12,
+    baslik: "Kiralık Araçlarda Navigasyon Kullanımı",
+    img: "https://images.unsplash.com/photo-1557800524-af842580933c?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Yolda kaybolmamak için kiralık araçlarda nasıl etkili bir şekilde navigasyon kullanılır?",
+  },
+  {
+    id: 13,
+    baslik: "Araç Kiralama ile Tatil Planı",
+    img: "https://images.unsplash.com/photo-1530065928592-fb0dc85d2f27?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Tatil planınızı daha esnek ve özgür kılmak için araç kiralama avantajları.",
+  },
+  {
+    id: 14,
+    baslik: "Araç Kiralama ve Sık Yapılan Hatalar",
+    img: "https://plus.unsplash.com/premium_photo-1670963965022-59c9ac468c18?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Araç kiralama sürecinde kaçınılması gereken yaygın hatalar ve çözümleri.",
+  },
+  {
+    id: 15,
+    baslik: "Yılbaşı Tatili İçin Araç Kiralama Tavsiyeleri",
+    img: "https://images.unsplash.com/photo-1574913923087-1605248ae3b7?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    detay:
+      "Yılbaşı tatilinizi planlarken dikkate almanız gereken araç kiralama ipuçları.",
+  },
+  // Dilerseniz daha fazla blog içeriği ekleyebilir veya mevcutları özelleştirebilirsiniz.
+];
