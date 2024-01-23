@@ -15,24 +15,28 @@ export default function DetaySayfasi({ params }) {
   }, []);
   return (
     <Container>
-      <Row>
+      <Row className="mt-3">
         <Col className="p-0">
           {item ? (
             <>
-              <h1>{item?.baslik}</h1>
               <Image
                 className="rounded-3 "
-                width={600}
+                layout="responsive"
                 height={600}
+                width={600}
                 src={item?.img}
                 alt={item.baslik}
               />
-              <p>{item?.detay}</p>
+              <div className="mt-2 gap-2">
+                <h2>{item?.baslik}</h2>
+                <p>{item?.detay}</p>
+              </div>
             </>
           ) : (
             <p>Veri bulunamadı.</p>
           )}
         </Col>
+        <Col>Rezervasyon Componenti</Col>
       </Row>
     </Container>
   );

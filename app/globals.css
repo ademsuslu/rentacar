@@ -105,7 +105,7 @@ body::-webkit-scrollbar-thumb {
 
 .overlay {
   position: absolute;
-  bottom: -70px; /* Başlangıçta altta başlaması için */
+  bottom: -100px; /* Başlangıçta altta başlaması için */
   left: 0;
   width: 100% !important;
   /* Overlay rengi (siyah, %70 şeffaflık) */
@@ -124,4 +124,10 @@ body::-webkit-scrollbar-thumb {
 
 .image-container:hover .overlay {
   bottom: 0; /* Hover olduğunda yukarı çıkması için */
+}
+@media screen and (max-width: 576px) {
+  .overlay {
+    position: absolute;
+    bottom: 0;
+  }
 }
