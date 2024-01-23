@@ -6,10 +6,10 @@ import { Container, Row, Col, ListGroup } from "react-bootstrap";
 
 const KiralamaKosullari = () => {
   return (
-    <Container>
+    <Container className="p-0">
       {kiralamaKosullari.map((kosul, index) => (
         <Row key={index} className="my-4">
-          <Col>
+          <Col className="p-0">
             <ListGroup variant="flush" className="bg-transparent border-0">
               <ListGroup.Item
                 className="bg-transparent border-0 "
