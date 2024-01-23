@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import "./style.css";
 
 // import required modules
-import { Parallax, Pagination, Navigation } from "swiper/modules";
+import { Parallax, Pagination, Navigation, Autoplay } from "swiper/modules";
 
 export default function Hero() {
   return (
@@ -23,11 +23,15 @@ export default function Hero() {
         }}
         speed={600}
         parallax={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
         navigation={true}
-        modules={[Parallax, Pagination, Navigation]}
+        modules={[Parallax, Pagination, Navigation, Autoplay]}
         className="mySwiper"
       >
         <div
