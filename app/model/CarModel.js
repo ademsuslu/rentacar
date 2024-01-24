@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const CarSchema = new mongoose.Schema(
   {
     marka: {
@@ -7,6 +6,10 @@ const CarSchema = new mongoose.Schema(
       required: true,
     },
     model: {
+      type: String,
+      required: true,
+    },
+    image: {
       type: String,
       required: true,
     },

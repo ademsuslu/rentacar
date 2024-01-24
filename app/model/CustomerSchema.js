@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const KullaniciSchema = new mongoose.Schema(
+const CustomerSchema = new mongoose.Schema(
   {
     ad: {
       type: String,
@@ -32,7 +32,7 @@ const KullaniciSchema = new mongoose.Schema(
   }
 );
 
-const Kullanici =
-  mongoose.models.Kullanici || mongoose.model("Kullanici", KullaniciSchema);
+const Customer =
+  mongoose.models.Customer || mongoose.model("Customer", CustomerSchema);
 
-export default Kullanici;
+export default Customer;
