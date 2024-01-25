@@ -1,3 +1,4 @@
+"use client";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -5,27 +6,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbars from "./components/navbars/Navbars";
 import Footer from "./components/footer/Footer";
 import { Col, Container, Row } from "react-bootstrap";
-import Head from "next/head";
+import { QueryClientProvider, QueryClient } from "react-query";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Rent a car",
-  description: "Rent a car.",
-};
-
+const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Container className="" fluid>
-          <Row className="justify-content-center">
-            <Col lg={10}>
-              <Navbars />
-              {children}
-              <Footer />
-            </Col>
-          </Row>
-        </Container>
+        <QueryClientProvider client={queryClient}>
+          <Container className="" fluid>
+            <Row className="justify-content-center">
+              <Col lg={10}>
+                <Navbars />
+                {children}
+                <Footer />
+              </Col>
+            </Row>
+          </Container>
+        </QueryClientProvider>
       </body>
     </html>
   );
