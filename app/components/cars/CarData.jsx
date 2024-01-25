@@ -29,9 +29,9 @@ const CarData = ({ item }) => {
           <span className="value">${item.fiyat}</span>
         </div>
         <div className="detail">
-          <span className="label">Durum:</span>
+          <span className="label ">Durum:</span>
           <span
-            className={`value ${
+            className={`value stats ${
               item.durum === "Active"
                 ? "text-success font-weight-semibold"
                 : "text-danger"

@@ -26,6 +26,10 @@
   justify-content: space-between;
 }
 
+.detail .stats {
+  font-weight: 700 !important;
+}
+
 .label {
   font-weight: bold;
   color: #333;
