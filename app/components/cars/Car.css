@@ -2,39 +2,27 @@
 .car-card {
   display: flex;
   flex-direction: column;
+  max-width: 800px;
   width: 100%;
+  max-height: 800px;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.car-card .car-image-wrapper .car-model {
+  white-space: nowrap !important;
+}
+.car-card:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .car-card .car-image-wrapper {
   width: 100%;
+  overflow: hidden !important;
+}
+
+.car-card .car-image-wrapper img {
   height: 100%;
-  overflow: hidden;
 }
-.car-card .car-image-wrapper:hover .car-image {
-  transform: scale(1.1);
-  transition: 0.3s ease;
-}
-
-.car-details {
-  padding: 10px 5px;
-  flex: 1;
-}
-
-.detail {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.detail .stats {
-  font-weight: 700 !important;
-}
-
-.label {
-  font-weight: bold;
-  color: #333;
-}
-
-.value {
-  color: #555;
+.car-card .car-model {
+  font-size: clamp(0.75rem, 0rem + 100vw, 0.875rem) !important;
 }

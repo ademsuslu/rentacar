@@ -131,3 +131,18 @@ body::-webkit-scrollbar-thumb {
     bottom: 0;
   }
 }
+
+.Conditions {
+  display: flex !important;
+}
+@media screen and (max-width: 768px) {
+  .Conditions {
+    flex-direction: column !important;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .footer-col {
+    margin-top: 2rem !important;
+  }
+}

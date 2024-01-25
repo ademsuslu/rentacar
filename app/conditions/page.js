@@ -1,15 +1,19 @@
 "use client";
-import Image from "next/image";
 import { kiralamaKosullari } from "../components/data/Data";
 import React from "react";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { useCarData } from "../hooks/getAllCar";
+import CarData from "../components/cars/CarData";
+import { SyncLoader } from "react-spinners";
 
 const KiralamaKosullari = () => {
+  const { data, status } = useCarData();
+
   return (
-    <Container className="p-0">
-      {kiralamaKosullari.map((kosul, index) => (
-        <Row key={index} className="my-4">
-          <Col className="p-0">
+    <Container fluid className="p-0  Conditions">
+      <Row className="my-4 flex-column ">
+        {kiralamaKosullari.map((kosul, index) => (
+          <Col key={index} className="p-0">
             <ListGroup variant="flush" className="bg-transparent border-0">
               <ListGroup.Item
                 className="bg-transparent border-0 "
@@ -24,18 +28,40 @@ const KiralamaKosullari = () => {
               ))}
             </ListGroup>
           </Col>
-          <Col>
-            <Image
-              width={150}
-              height={150}
-              className="rounded cursor-pointer"
-              src="https://images.pexels.com/photos/909907/pexels-photo-909907.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Car"
-            />
-            Araba seçenekleri gösterilicek
-          </Col>
-        </Row>
-      ))}
+        ))}
+      </Row>
+
+      <Row className="my-4 flex-column ">
+        {data?.data.map((item) => {
+          if (status === "error") {
+            return (
+              <Container>
+                <h1>Hatalı işlem</h1>
+              </Container>
+            );
+          }
+          if (status === "loading") {
+            return (
+              <Container>
+                <Row className="justify-content-center my-3  align-items-center ">
+                  <Col
+                    sm
+                    className="d-flex justify-content-center align-items-center"
+                  >
+                    <SyncLoader color="#ff690f" />
+                  </Col>
+                </Row>
+              </Container>
+            );
+          }
+
+          return (
+            <Col md={12} key={item._id} className="mb-4">
+              <CarData item={item} />
+            </Col>
+          );
+        })}
+      </Row>
     </Container>
   );
 };

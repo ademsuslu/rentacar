@@ -8,9 +8,9 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
 const Footer = () => {
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-between">
-        <Col className="px-2">
+    <Container fluid className="mt-5">
+      <Row className="justify-content-between flex-column-reverse flex-md-row">
+        <Col className="px-2  mb-sm-4 footer-col  ">
           <h4> Yola Çık!</h4>
           <p>
             Yolculuklarınıza renk katmak, her anınızı özel kılmak için
@@ -20,7 +20,7 @@ const Footer = () => {
             konforlu ve keyif dolu bir yolculuk için bize katılın!
           </p>
         </Col>
-        <Col className="px-2">
+        <Col className="px-2  mb-sm-4 footer-col ">
           <h4>
             Rent <span className="saklıdır">A</span> Car
           </h4>
@@ -32,7 +32,9 @@ const Footer = () => {
             duyarız. İyi yolculuklar dileriz, birlikte nice güzel anılara!
           </span>
         </Col>
-        <Col className=" px-2">
+        <Col className="px-2  mb-sm-4 footer-col ">
+          {" "}
+          {/* Son kol'da boşluk olmamalı */}
           <h4>Blog</h4>
           {BlogData.map((item) => (
             <Link key={item.name} className={`nav-link`} href={item.url}>
