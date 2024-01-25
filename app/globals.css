@@ -140,6 +140,14 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column !important;
   }
 }
+.Blog {
+  display: flex !important;
+}
+@media screen and (max-width: 768px) {
+  .Blog {
+    flex-direction: column !important;
+  }
+}
 
 @media screen and (max-width: 576px) {
   .footer-col {

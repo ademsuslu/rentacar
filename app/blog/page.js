@@ -8,7 +8,7 @@ export default function Page() {
       <Row className="my-3 gap-2 justify-content-center   ">
         {blogData.map((item) => {
           return (
-            <Col sm={3} className="  p-0">
+            <Col sm={3} key={item.id} className="  p-0">
               <div class="image-container">
                 <img
                   src={item.img}
