@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 
 export default function Modals(props) {
   const [step, setStep] = useState(1);
@@ -11,17 +12,54 @@ export default function Modals(props) {
     setStep(step - 1);
   };
 
+  const form = useForm({
+    defaultValues: {
+      username: "",
+      email: "",
+      channel: "",
+      social: {
+        twitter: "",
+        facebook: "",
+      },
+      phoneNumbers: ["", ""],
+      phNumbers: [{ number: "" }],
+      age: 0,
+      dob: new Date(),
+    },
+  });
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    getValues,
+    setValue,
+    watch,
+    reset,
+  } = form;
+  const { errors } = formState;
+
   const renderStepContent = () => {
     switch (step) {
       case 1:
         return (
           <>
-            <Form.Select aria-label="Default select example">
+            <Form.Select
+              {...register("username", {
+                required: {
+                  value: true,
+                  message: "User name is Required",
+                },
+              })}
+              autoComplete="false"
+              aria-label="select example"
+            >
               <option>Select a Car</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
             </Form.Select>
+            <p className="text-white fw-bold ">{errors.username?.message}</p>
           </>
         );
       case 2:
@@ -42,11 +80,11 @@ export default function Modals(props) {
           <>
             <Form.Group controlId="tc">
               <Form.Label>TC Kimlik Numarası</Form.Label>
-              <Form.Control type="text" name="tc" />
+              <Form.Control type="number" name="tc" />
             </Form.Group>
             <Form.Group controlId="age">
               <Form.Label>Yaş</Form.Label>
-              <Form.Control type="text" name="age" />
+              <Form.Control type="number" name="age" />
             </Form.Group>
           </>
         );
@@ -66,7 +104,7 @@ export default function Modals(props) {
       case 5:
         return (
           <>
-            <Form.Select aria-label="Default select example">
+            <Form.Select aria-label="select example">
               <option>Alış Şubesi</option>
               <option value="konya">Konya</option>
               <option value="istanbul">Istanbul</option>
@@ -74,14 +112,14 @@ export default function Modals(props) {
             </Form.Select>
             <Form.Group controlId="alış-saati">
               <Form.Label>Alış tarihi</Form.Label>
-              <Form.Control type="text" name="alış-saati" />
+              <Form.Control type="datetime-local" name="alış-saati" />
             </Form.Group>
           </>
         );
       case 6:
         return (
           <>
-            <Form.Select aria-label="Default select example">
+            <Form.Select aria-label="select example">
               <option>Teslim Şubesi</option>
               <option value="konya">Konya</option>
               <option value="istanbul">Istanbul</option>
@@ -89,7 +127,7 @@ export default function Modals(props) {
             </Form.Select>
             <Form.Group controlId="teslim-saati">
               <Form.Label>Teslim tarihi</Form.Label>
-              <Form.Control type="text" name="teslim-saati" />
+              <Form.Control type="datetime-local" name="teslim-saati" />
             </Form.Group>
           </>
         );
@@ -120,6 +158,12 @@ export default function Modals(props) {
         return null;
     }
   };
+
+  const onSubmit = (data) => {
+    console.log("Form Submitted", data);
+    reset(); // formu yolladıkdan sonra formdaki verileri siliyor
+  };
+
   return (
     <Modal
       {...props}
@@ -131,7 +175,7 @@ export default function Modals(props) {
         <Modal.Title>Rent A Car</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>{renderStepContent()}</Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>{renderStepContent()}</Form>
       </Modal.Body>
       <Modal.Footer>
         {step > 1 && (
