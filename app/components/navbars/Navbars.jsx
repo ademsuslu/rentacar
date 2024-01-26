@@ -9,9 +9,10 @@ import Link from "next/link";
 import { NavData } from "../data/Data";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
-
+import Modals from "../modals/Modals";
 function Navbars() {
   const [activeLink, setActiveLink] = useState("");
+  const [modalShow, setModalShow] = useState(false);
   return (
     <Container fluid>
       <Row>
@@ -40,9 +41,13 @@ function Navbars() {
                   </Link>
                 ))}
               </Nav>
-              <Button className="fs-6 btn-orange  font-normal">
+              <Button
+                onClick={() => setModalShow(true)}
+                className="fs-6 btn-orange  font-normal"
+              >
                 <SlCalender />
               </Button>
+              <Modals show={modalShow} onHide={() => setModalShow(false)} />
             </Navbar.Collapse>
           </Navbar>
         </Col>
