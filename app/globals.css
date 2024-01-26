@@ -27,6 +27,12 @@ body::-webkit-scrollbar-thumb {
 :root {
   --renk-orange: #ff690f;
 }
+
+.app-container {
+  min-height: 100dvh !important;
+  min-height: 100vh !important;
+}
+
 .logo {
   font-weight: 700;
 }

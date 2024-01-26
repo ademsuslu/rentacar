@@ -12,18 +12,33 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
   return (
+    // <html lang="en">
+    //   <body className={montserrat.className}>
+    //     <QueryClientProvider client={queryClient}>
+    //       <Container className="" fluid>
+    //         <Row className="justify-content-center">
+    //           <Col lg={10}>
+    //             <Navbars />
+    //             {children}
+    //             <Footer />
+    //           </Col>
+    //         </Row>
+    //       </Container>
+    //     </QueryClientProvider>
+    //   </body>
+    // </html>
     <html lang="en">
       <body className={montserrat.className}>
         <QueryClientProvider client={queryClient}>
-          <Container className="" fluid>
+          <Container className="app-container" fluid>
             <Row className="justify-content-center">
               <Col lg={10}>
                 <Navbars />
                 {children}
-                <Footer />
               </Col>
             </Row>
           </Container>
+          <Footer />
         </QueryClientProvider>
       </body>
     </html>
