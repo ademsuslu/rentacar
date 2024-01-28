@@ -1,54 +1,41 @@
 "use client";
-
+import React from "react";
 import { Form } from "react-bootstrap";
 
-export const renderStepContent = (step, form, carData, city) => {
-  const { register, formState } = form;
-
-  // dışarıdan gelen şehirler
-  const Citys = city?.data?.data;
-
-  const { errors } = formState;
+export const renderStepContent = (form, step, carData, Citys) => {
+  const {
+    register,
+    formState: { errors },
+  } = form;
   switch (step) {
     case 1:
       return (
         <>
           <Form.Label>Select a car</Form.Label>
           <Form.Select
-            {...register("carId", {
-              required: {
-                value: true,
-                message: "Car is Required",
-              },
-            })}
+            {...register("car", { required: "Car is required" })}
+            name="car"
+            id="car"
             autoComplete="false"
             aria-label="select example"
           >
-            {carData?.map((opt) => {
-              return (
-                <>
-                  <option key={opt._id} value={opt._id}>
-                    {opt.marka}
-                  </option>
-                </>
-              );
-            })}
+            {carData?.map((opt) => (
+              <option key={opt._id} value={`${opt._id},${opt.fiyat}`}>
+                {opt.marka}
+              </option>
+            ))}
           </Form.Select>
-          <p className="text-white fw-bold ">{errors.carId?.message}</p>
+          <p className="text-white fw-bold ">{errors.car?.message}</p>
         </>
       );
+
     case 2:
       return (
         <>
           <Form.Group controlId="names">
             <Form.Label>Adı</Form.Label>
             <Form.Control
-              {...register("names", {
-                required: {
-                  value: true,
-                  message: "Name is Required",
-                },
-              })}
+              {...register("names", { required: "Name is required" })}
               autoComplete="false"
               type="text"
               name="names"
@@ -58,12 +45,7 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="surname">
             <Form.Label>Soyad</Form.Label>
             <Form.Control
-              {...register("surname", {
-                required: {
-                  value: true,
-                  message: "Surname is Required",
-                },
-              })}
+              {...register("surname", { required: "Surname is required" })}
               autoComplete="false"
               type="text"
               name="surname"
@@ -72,18 +54,14 @@ export const renderStepContent = (step, form, carData, city) => {
           </Form.Group>
         </>
       );
+
     case 3:
       return (
         <>
           <Form.Group controlId="tc">
             <Form.Label>TC Kimlik Numarası</Form.Label>
             <Form.Control
-              {...register("tc", {
-                required: {
-                  value: true,
-                  message: "Person id  is Required",
-                },
-              })}
+              {...register("tc", { required: "Tc id  is required" })}
               autoComplete="false"
               type="number"
               name="tc"
@@ -93,12 +71,7 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="age">
             <Form.Label>Yaş</Form.Label>
             <Form.Control
-              {...register("age", {
-                required: {
-                  value: true,
-                  message: "Person id  is Required",
-                },
-              })}
+              {...register("age", { required: "Age  is required" })}
               autoComplete="false"
               type="number"
               name="age"
@@ -113,12 +86,7 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="phone">
             <Form.Label>Telefon</Form.Label>
             <Form.Control
-              {...register("phone", {
-                required: {
-                  value: true,
-                  message: "Person id  is Required",
-                },
-              })}
+              {...register("phone", { required: "Phone  is required" })}
               autoComplete="false"
               type="number"
               name="phone"
@@ -128,17 +96,12 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "Person id  is Required",
-                },
-              })}
+              {...register("email", { required: "Email  is required" })}
               autoComplete="false"
               type="email"
               name="email"
             />
-            <p className="text-white fw-bold ">{errors.email?.message}</p>
+            <p className="text-white fw-bold">{errors.email?.message}</p>
           </Form.Group>
         </>
       );
@@ -148,18 +111,13 @@ export const renderStepContent = (step, form, carData, city) => {
           {" "}
           <Form.Label>Alış Subesi</Form.Label>
           <Form.Select
-            {...register("aSube", {
-              required: {
-                value: true,
-                message: "Alış şubesi  is Required",
-              },
-            })}
+            {...register("aSube", { required: "Shopping branch  is required" })}
             autoComplete="false"
             aria-label="select example"
           >
             {Citys?.map((item) => {
               return (
-                <option key={item.id} value={item.name}>
+                <option key={item.name} value={item.name}>
                   {item.name}
                 </option>
               );
@@ -169,17 +127,14 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="alış-saati">
             <Form.Label>Alış tarihi</Form.Label>
             <Form.Control
-              {...register("aDate", {
-                required: {
-                  value: true,
-                  message: "Alış Saati  is Required",
-                },
+              {...register("aTarihi", {
+                required: "Shopping Date  is required",
               })}
               autoComplete="false"
               type="datetime-local"
               name="alış-saati"
             />
-            <p className="text-white fw-bold ">{errors.aDate?.message}</p>
+            <p className="text-white fw-bold ">{errors.aTarihi?.message}</p>
           </Form.Group>
         </>
       );
@@ -189,17 +144,14 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Label>Teslim Subesi</Form.Label>
           <Form.Select
             {...register("vSube", {
-              required: {
-                value: true,
-                message: "Teslim şubesi  is Required",
-              },
+              required: "Shopping Date  is required",
             })}
             autoComplete="false"
             aria-label="select example"
           >
             {Citys?.map((item) => {
               return (
-                <option key={item.id} value={item.name}>
+                <option key={item.name} value={item.name}>
                   {item.name}
                 </option>
               );
@@ -209,16 +161,13 @@ export const renderStepContent = (step, form, carData, city) => {
           <Form.Group controlId="teslim-saati">
             <Form.Label>Teslim tarihi</Form.Label>
             <Form.Control
-              {...register("vSube", {
-                required: {
-                  value: true,
-                  message: "Teslim tarihi  is Required",
-                },
+              {...register("vTarihi", {
+                required: "Buying Date  is required",
               })}
               type="datetime-local"
               name="teslim-saati"
             />
-            <p className="text-white fw-bold ">{errors.vDate?.message}</p>
+            <p className="text-white fw-bold ">{errors.vTarihi?.message}</p>
           </Form.Group>
         </>
       );
@@ -227,13 +176,15 @@ export const renderStepContent = (step, form, carData, city) => {
         <>
           <Form.Group className="mb-3" id="formGridCheckboxs">
             <Form.Check
+              name="formGridCheckboxs"
               {...register("koltuk")}
               type="checkbox"
               label="Çocuk Koltuğu"
             />
           </Form.Group>
-          <Form.Group className="mb-3" id="formGridCheckboxs">
+          <Form.Group className="mb-3" id="formGridCheckboxss">
             <Form.Check
+              name="formGridCheckboxss"
               {...register("sigorta")}
               type="checkbox"
               label="Sigorta"
@@ -246,6 +197,9 @@ export const renderStepContent = (step, form, carData, city) => {
         <>
           <Form.Group className="mb-3" id="formGridCheckbox">
             <Form.Check
+              {...register("sözleşme", {
+                required: "Sözleşme  is required",
+              })}
               type="checkbox"
               label="Satış sözleşmesini okudum onaylıyorum"
             />

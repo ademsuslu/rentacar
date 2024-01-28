@@ -4,9 +4,9 @@ import { useCarData } from "@/app/hooks/getAllCar";
 import { Col, Container, Row } from "react-bootstrap";
 import { SyncLoader } from "react-spinners";
 import CarData from "./components/cars/CarData";
+
 export default function Home() {
   const { data, status } = useCarData();
-
   return (
     <Container className="p-0" fluid>
       <Row>

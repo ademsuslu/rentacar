@@ -9,41 +9,56 @@ import { useCityData } from "@/app/hooks/getAllCity";
 
 export default function Modals(props) {
   const [step, setStep] = useState(1);
-  const { data } = useCarData();
-  const { data: city } = useCityData();
+  const { data: carData } = useCarData();
+  const { data: cityData } = useCityData();
 
-  const carData = data?.data;
+  const Citys = cityData?.data?.data;
+
   const handleNext = () => {
-    setStep(step + 1);
-  };
-  const handlePrev = () => {
-    setStep(step - 1);
+    if (step < 9) {
+      setStep(step + 1);
+    }
   };
 
-  const onSubmit = (data) => {
-    console.log("Form Submitted", data);
-    reset(); // formu yolladıkdan sonra formdaki verileri siliyor
+  const handlePrev = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    }
   };
+
   const form = useForm({
     defaultValues: {
-      carId: 0, // burada hem arabanın idsini hemde fiyatını göndermeli
+      car: {
+        id: "",
+        fiyat: 0,
+      },
       names: "",
       surname: "",
       tc: 0,
       age: 0,
-      phone: "",
+      phone: 0,
       email: "",
       aSube: "",
-      aDate: new Date(),
+      aTarihi: new Date().toISOString().slice(0, 16),
       vSube: "",
-      vDate: new Date(),
-      koltuk: false,
-      sigorta: false,
-      sözleşme: false,
+      vTarihi: new Date().toISOString().slice(0, 16),
+      koltuk: true,
+      sigorta: true,
+      sözleşme: true,
     },
   });
 
-  const { handleSubmit, reset } = form;
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = form;
+
+  const onSubmit = (data) => {
+    console.log("click");
+    console.log(data);
+    // Burada verileri sunucuya gönderme işlemlerini yapabilirsiniz.
+  };
+
   return (
     <Modal
       {...props}
@@ -56,7 +71,7 @@ export default function Modals(props) {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {renderStepContent(step, form, carData, city)}
+          {renderStepContent(form, step, carData?.data, Citys)}
         </Form>
       </Modal.Body>
       <Modal.Footer>
@@ -65,8 +80,13 @@ export default function Modals(props) {
             Geri
           </Button>
         )}
+
         {step < 9 ? (
-          <Button variant="primary" onClick={handleNext}>
+          <Button
+            variant="primary"
+            disabled={!form.formState.isValid}
+            onClick={handleNext}
+          >
             İleri
           </Button>
         ) : (
