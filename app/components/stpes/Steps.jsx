@@ -1,10 +1,22 @@
 "use client";
-import React from "react";
+
+import React, { useCallback, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useMutation } from "@tanstack/react-query";
+import { createCalc } from "@/app/hooks/calc/calc";
 
 export const renderStepContent = (form, step, carData, Citys) => {
-  let a;
-  a = carData;
+  let carDataArr;
+  carDataArr = carData;
+  const mutation = useMutation({
+    mutationFn: (Merge) => createCalc(Merge),
+    onSuccess: (Merge) => console.log(Merge),
+    onError: (error) => {
+      console.log("***********error********************");
+      console.log(error.message);
+      console.log("***********error********************");
+    },
+  });
   const {
     register,
     formState: { errors },
@@ -30,7 +42,6 @@ export const renderStepContent = (form, step, carData, Citys) => {
           <p className="text-white fw-bold ">{errors.car?.message}</p>
         </>
       );
-
     case 2:
       return (
         <>
@@ -117,9 +128,9 @@ export const renderStepContent = (form, step, carData, Citys) => {
             autoComplete="false"
             aria-label="select example"
           >
-            {Citys?.map((item) => {
+            {Citys?.map((item, idx) => {
               return (
-                <option key={item.name} value={item.name}>
+                <option key={idx} value={item.name}>
                   {item.name}
                 </option>
               );
@@ -200,30 +211,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
           </Form.Group>
         </>
       );
-    // ... (Yukarıdaki kodları buraya ekleyin)
-
     case 8:
-      const calculateTotal = (formData) => {
-        const { koltuk, sigorta, car } = formData;
-        const aTarihi = new Date(formData.aTarihi);
-        const vTarihi = new Date(formData.vTarihi);
-        const carInfo = formData.car.split(",");
-        const carId = carInfo[0];
-        const carPrice = parseInt(carInfo[1]);
-
-        const dateDiff = (date1, date2) => {
-          const diff = new Date(date2).getTime() - new Date(date1).getTime();
-          return Math.ceil(diff / (1000 * 60 * 60 * 24));
-        };
-
-        const cars = a.find((item) => item._id === carId);
-        console.log(cars);
-        const gun = dateDiff(aTarihi, vTarihi);
-        const koltukUcreti = koltuk ? 10 : 0;
-        const sigortaUcreti = sigorta ? 100 : 0;
-
-        const toplamUcret = gun * carPrice + koltukUcreti + sigortaUcreti;
-      };
       return (
         <>
           <Form.Group className="mb-3" id="formGridCheckbox">
@@ -234,16 +222,15 @@ export const renderStepContent = (form, step, carData, Citys) => {
               type="checkbox"
               label="Satış sözleşmesini okudum onaylıyorum"
             />
-          </Form.Group>{" "}
-          <div>
-            <Button
-              variant="primary"
-              onClick={() => calculateTotal(form.getValues())}
-            >
-              Hesapla
-            </Button>
-          </div>
+          </Form.Group>
         </>
+      );
+    case 9:
+      const { aTarihi, vTarihi, koltuk, sigorta } = form.getValues();
+      const MergeForm = { aTarihi, vTarihi, koltuk, sigorta };
+      const Merge = { MergeForm, carDataArr };
+      return (
+        <button onClick={() => mutation.mutate({ Merge })}>Calculate </button>
       );
 
     default:

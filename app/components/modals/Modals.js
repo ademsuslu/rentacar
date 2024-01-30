@@ -3,16 +3,19 @@ import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 import { renderStepContent } from "../stpes/Steps";
+
+import { useCarData } from "@/app/hooks/getallcar/getAllcar";
+import { useCityData } from "@/app/hooks/city/city";
+
+// use formu import et
 import { useForm } from "react-hook-form";
-import { useCarData } from "@/app/hooks/getAllCar";
-import { useCityData } from "@/app/hooks/getAllCity";
 
 export default function Modals(props) {
   const [step, setStep] = useState(1);
   const { data: carData } = useCarData();
   const { data: cityData } = useCityData();
 
-  const Citys = cityData?.data?.data;
+  const Citys = cityData?.data;
 
   const handleNext = () => {
     if (step < 9) {
@@ -71,7 +74,7 @@ export default function Modals(props) {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {renderStepContent(form, step, carData?.data, Citys)}
+          {renderStepContent(form, step, carData, Citys)}
         </Form>
       </Modal.Body>
       <Modal.Footer>

@@ -6,27 +6,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbars from "./components/navbars/Navbars";
 import Footer from "./components/footer/Footer";
 import { Col, Container, Row } from "react-bootstrap";
-import { QueryClientProvider, QueryClient } from "react-query";
 const montserrat = Montserrat({ subsets: ["latin"] });
+// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
   return (
-    // <html lang="en">
-    //   <body className={montserrat.className}>
-    //     <QueryClientProvider client={queryClient}>
-    //       <Container className="" fluid>
-    //         <Row className="justify-content-center">
-    //           <Col lg={10}>
-    //             <Navbars />
-    //             {children}
-    //             <Footer />
-    //           </Col>
-    //         </Row>
-    //       </Container>
-    //     </QueryClientProvider>
-    //   </body>
-    // </html>
     <html lang="en">
       <body className={montserrat.className}>
         <QueryClientProvider client={queryClient}>

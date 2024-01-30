@@ -1,12 +1,13 @@
 "use client";
 import Hero from "./components/Hero/Hero";
-import { useCarData } from "@/app/hooks/getAllCar";
+import { useCarData } from "@/app/hooks/getallcar/getAllcar";
 import { Col, Container, Row } from "react-bootstrap";
 import { SyncLoader } from "react-spinners";
 import CarData from "./components/cars/CarData";
 
 export default function Home() {
   const { data, status } = useCarData();
+
   return (
     <Container className="p-0" fluid>
       <Row>
@@ -17,7 +18,7 @@ export default function Home() {
       </Row>
 
       <Row className="my-3 gap-2 justify-content-around     ">
-        {data?.data.map((item) => {
+        {data?.map((item) => {
           if (status === "loading") {
             return (
               <Container>

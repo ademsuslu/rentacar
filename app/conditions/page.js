@@ -2,7 +2,7 @@
 import { kiralamaKosullari } from "../components/data/Data";
 import React from "react";
 import { Container, Row, Col, ListGroup } from "react-bootstrap";
-import { useCarData } from "../hooks/getAllCar";
+import { useCarData } from "../hooks/getallcar/getAllcar";
 import CarData from "../components/cars/CarData";
 import { SyncLoader } from "react-spinners";
 

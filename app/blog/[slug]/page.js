@@ -2,7 +2,7 @@
 
 import CarData from "@/app/components/cars/CarData";
 import { blogData } from "@/app/components/data/Data";
-import { useCarData } from "@/app/hooks/getAllCar";
+import { useCarData } from "@/app/hooks/getallcar/getAllcar";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
