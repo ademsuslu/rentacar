@@ -3,7 +3,8 @@ import dbConnect from "@/app/util/dbConnet";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  //  Get işleminde hesaplama yapılıcak
+  // Last child al ve hesaplama yap
+
   await dbConnect();
   const calc = await CarCalculate.find();
   return NextResponse.json(calc);
@@ -12,13 +13,7 @@ export async function GET() {
 export async function POST(request) {
   await dbConnect();
   const res = await request.json();
-  console.log(
-    "BACK END LOGU *****************************************************************",
-    res.Merge
-  );
-
-  const { MergeForm, carDataArr } = res.Merge;
-
+  const { MergeForm, carData } = res;
   const { aTarihi, vTarihi, koltuk, sigorta } = MergeForm;
 
   const data = {
@@ -26,7 +21,7 @@ export async function POST(request) {
     vTarihi,
     koltuk,
     sigorta,
-    carData: carDataArr,
+    carData,
   };
   const calc = await CarCalculate.create(data);
 
@@ -42,7 +37,25 @@ export async function POST(request) {
     },
   });
 }
+//   const calculateTotal = (formData) => {
+//   const { koltuk, sigorta, car } = formData;
+//   const aTarihi = new Date(formData.aTarihi);
+//   const vTarihi = new Date(formData.vTarihi);
+//   const carInfo = formData.car.split(",");
+//   const carId = carInfo[0];
+//   const carPrice = parseInt(carInfo[1]);
 
-// export async function PUT(request) {}
+//   const dateDiff = (date1, date2) => {
+//     const diff = new Date(date2).getTime() - new Date(date1).getTime();
+//     return Math.ceil(diff / (1000 * 60 * 60 * 24));
+//   };
 
-// export async function DELETE(request) {}
+//   const cars = a.find((item) => item._id === carId);
+//   console.log(cars);
+//   const gun = dateDiff(aTarihi, vTarihi);
+//   const koltukUcreti = koltuk ? 10 : 0;
+//   const sigortaUcreti = sigorta ? 100 : 0;
+
+//   const toplamUcret = gun * carPrice + koltukUcreti + sigortaUcreti;
+//   return { toplamUcret, gun };
+// };

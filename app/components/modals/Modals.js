@@ -10,6 +10,9 @@ import { useCityData } from "@/app/hooks/city/city";
 // use formu import et
 import { useForm } from "react-hook-form";
 
+import { useMutation } from "@tanstack/react-query";
+import { createCalc } from "@/app/hooks/calc/calc";
+
 export default function Modals(props) {
   const [step, setStep] = useState(1);
   const { data: carData } = useCarData();
@@ -19,13 +22,13 @@ export default function Modals(props) {
 
   const handleNext = () => {
     if (step < 9) {
-      setStep(step + 1);
+      setStep((prevState) => prevState + 1);
     }
   };
 
   const handlePrev = () => {
     if (step > 1) {
-      setStep(step - 1);
+      setStep((prevState) => prevState - 1);
     }
   };
 
@@ -51,15 +54,22 @@ export default function Modals(props) {
     },
   });
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = form;
-
+  const { handleSubmit } = form;
+  const mutation = useMutation({
+    mutationFn: (Merge) => createCalc(Merge),
+    onError: (error) => {
+      console.log(error.message);
+    },
+  });
   const onSubmit = (data) => {
-    console.log("click");
-    console.log(data);
-    // Burada verileri sunucuya gönderme işlemlerini yapabilirsiniz.
+    const { aTarihi, vTarihi, koltuk, sigorta } = data;
+    const MergeForm = { aTarihi, vTarihi, koltuk, sigorta };
+    const Merge = {
+      MergeForm,
+      carData,
+    };
+
+    mutation.mutate(Merge);
   };
 
   return (
@@ -84,7 +94,7 @@ export default function Modals(props) {
           </Button>
         )}
 
-        {step < 9 ? (
+        {step < 8 ? (
           <Button
             variant="primary"
             disabled={!form.formState.isValid}

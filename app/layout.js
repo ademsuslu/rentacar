@@ -9,6 +9,7 @@ import { Col, Container, Row } from "react-bootstrap";
 const montserrat = Montserrat({ subsets: ["latin"] });
 // import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
+        <Toaster />
         <QueryClientProvider client={queryClient}>
           <Container className="app-container" fluid>
             <Row className="justify-content-center">

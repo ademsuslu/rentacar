@@ -1,22 +1,8 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
-import { useMutation } from "@tanstack/react-query";
-import { createCalc } from "@/app/hooks/calc/calc";
+import { Form } from "react-bootstrap";
 
 export const renderStepContent = (form, step, carData, Citys) => {
-  let carDataArr;
-  carDataArr = carData;
-  const mutation = useMutation({
-    mutationFn: (Merge) => createCalc(Merge),
-    onSuccess: (Merge) => console.log(Merge),
-    onError: (error) => {
-      console.log("***********error********************");
-      console.log(error.message);
-      console.log("***********error********************");
-    },
-  });
   const {
     register,
     formState: { errors },
@@ -224,13 +210,6 @@ export const renderStepContent = (form, step, carData, Citys) => {
             />
           </Form.Group>
         </>
-      );
-    case 9:
-      const { aTarihi, vTarihi, koltuk, sigorta } = form.getValues();
-      const MergeForm = { aTarihi, vTarihi, koltuk, sigorta };
-      const Merge = { MergeForm, carDataArr };
-      return (
-        <button onClick={() => mutation.mutate({ Merge })}>Calculate </button>
       );
 
     default:
