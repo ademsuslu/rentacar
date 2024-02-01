@@ -11,7 +11,8 @@ import { useCityData } from "@/app/hooks/city/city";
 import { useForm } from "react-hook-form";
 
 import { useMutation } from "@tanstack/react-query";
-import { createCalc } from "@/app/hooks/calc/calc";
+import { Carcalculate, createCalc } from "@/app/hooks/calc/calc";
+import toast from "react-hot-toast";
 
 export default function Modals(props) {
   const [step, setStep] = useState(1);
@@ -62,16 +63,16 @@ export default function Modals(props) {
     },
   });
   const onSubmit = (data) => {
-    const { aTarihi, vTarihi, koltuk, sigorta } = data;
-    const MergeForm = { aTarihi, vTarihi, koltuk, sigorta };
+    const { aTarihi, vTarihi, koltuk, sigorta, car } = data;
+
+    const MergeForm = { aTarihi, vTarihi, koltuk, sigorta, car };
     const Merge = {
       MergeForm,
       carData,
     };
-
     mutation.mutate(Merge);
+    handleNext();
   };
-
   return (
     <Modal
       {...props}
@@ -104,11 +105,21 @@ export default function Modals(props) {
           </Button>
         ) : (
           <Button
+            className={step === 8 ? "btn btn-primary" : "d-none"}
             type="submit"
             onClick={handleSubmit(onSubmit)}
+            variant="btn"
+          >
+            ileri
+          </Button>
+        )}
+        {step > 8 && (
+          <Button
+            type="submit"
+            onClick={() => alert("Tamamla")}
             variant="btn btn-orange"
           >
-            Alışverişi Tamamla
+            Tamamla
           </Button>
         )}
       </Modal.Footer>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Carcalculate } from "@/app/hooks/calc/calc";
 import { Form } from "react-bootstrap";
 
 export const renderStepContent = (form, step, carData, Citys) => {
@@ -211,6 +212,12 @@ export const renderStepContent = (form, step, carData, Citys) => {
           </Form.Group>
         </>
       );
+    case 9:
+      const YourComponent = () => {
+        const { data: calcData } = Carcalculate();
+      };
+
+      return <YourComponent />;
 
     default:
       return null;

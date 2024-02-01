@@ -17,6 +17,10 @@ const CarCalculateSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    car: {
+      type: String,
+      required: true,
+    },
     carData: {
       type: Array,
     },
