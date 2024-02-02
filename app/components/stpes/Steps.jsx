@@ -45,6 +45,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
               autoComplete="false"
               type="text"
               name="names"
+              inputMode="text"
             />
             <p className="text-white fw-bold ">{errors.names?.message}</p>
           </Form.Group>{" "}
@@ -57,6 +58,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
               })}
               autoComplete="false"
               type="text"
+              inputMode="text"
               name="surname"
             />
             <p className="text-white fw-bold ">{errors.surname?.message}</p>
@@ -77,6 +79,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
               autoComplete="false"
               type="number"
               name="tc"
+              inputMode="numeric"
             />
             <p className="text-white fw-bold ">{errors.tc?.message}</p>
           </Form.Group>
@@ -88,6 +91,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
                 min: 18,
                 max: 60,
               })}
+              inputMode="numeric"
               autoComplete="false"
               type="number"
               name="age"
@@ -103,6 +107,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
             <Form.Label className="my-1">Telefon</Form.Label>
             <PhoneInput
               country={"tr"}
+              inputMode="tel"
               {...register("phone")} // react-hook-form ile register kullanımı
               onChange={(phone) => form.setValue("phone", phone)} // react-hook-form ile setValue kullanımı
             />
@@ -117,6 +122,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
               autoComplete="false"
               type="email"
               name="email"
+              inputMode="email"
             />
             {errors.mail && <p role="alert">{errors.email.message}</p>}
           </Form.Group>
@@ -193,6 +199,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
                   form.setValue("vTarihi", e.target.value);
                 }
               }}
+              inputMode="date"
             />
             <p className="text-white fw-bold ">{errors.vTarihi?.message}</p>
           </Form.Group>
@@ -201,17 +208,17 @@ export const renderStepContent = (form, step, carData, Citys) => {
     case 7:
       return (
         <>
-          <Form.Group className="mb-3" id="formGridCheckboxs">
+          <Form.Group className="mb-3" id="koltuk">
             <Form.Check
-              name="formGridCheckboxs"
+              name="koltuk"
               {...register("koltuk")}
               type="checkbox"
               label="Çocuk Koltuğu"
             />
           </Form.Group>
-          <Form.Group className="mb-3" id="formGridCheckboxss">
+          <Form.Group className="mb-3" id="sigorta">
             <Form.Check
-              name="formGridCheckboxss"
+              name="sigorta"
               {...register("sigorta")}
               type="checkbox"
               label="Sigorta"
@@ -222,11 +229,12 @@ export const renderStepContent = (form, step, carData, Citys) => {
     case 8:
       return (
         <>
-          <Form.Group className="mb-3" id="formGridCheckbox">
+          <Form.Group className="mb-3" id="sözleşme">
             <Form.Check
               {...register("sözleşme", {
                 required: "Sözleşme is required",
               })}
+              name="sözleşme"
               type="checkbox"
               label="Satış sözleşmesini okudum onaylıyorum"
             />

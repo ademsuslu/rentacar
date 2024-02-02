@@ -1,5 +1,9 @@
 export const NavData = [
   {
+    name: "Admin",
+    url: "/admin",
+  },
+  {
     name: "Hakkımızda",
     url: "/about",
   },
