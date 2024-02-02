@@ -13,6 +13,7 @@ import Modals from "../modals/Modals";
 function Navbars() {
   const [activeLink, setActiveLink] = useState("");
   const [modalShow, setModalShow] = useState(false);
+
   return (
     <Container fluid>
       <Row>

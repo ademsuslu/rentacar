@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 
 import { useMutation } from "@tanstack/react-query";
 import { Carcalculate, createCalc } from "@/app/hooks/calc/calc";
-import toast from "react-hot-toast";
+import { IoIosClose } from "react-icons/io";
 
 export default function Modals(props) {
   const [step, setStep] = useState(1);
@@ -37,13 +37,13 @@ export default function Modals(props) {
     defaultValues: {
       car: {
         id: "",
-        fiyat: 0,
+        fiyat: "",
       },
       names: "",
       surname: "",
-      tc: 0,
-      age: 0,
-      phone: 0,
+      tc: "",
+      age: "",
+      phone: "",
       email: "",
       aSube: "",
       aTarihi: new Date().toISOString().slice(0, 16),
@@ -55,7 +55,7 @@ export default function Modals(props) {
     },
   });
 
-  const { handleSubmit } = form;
+  const { handleSubmit, reset } = form;
   const mutation = useMutation({
     mutationFn: (Merge) => createCalc(Merge),
     onError: (error) => {
@@ -71,6 +71,7 @@ export default function Modals(props) {
       carData,
     };
     mutation.mutate(Merge);
+    reset();
     handleNext();
   };
   return (
@@ -79,9 +80,21 @@ export default function Modals(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      backdrop="static"
+      keyboard={false}
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>Rent A Car</Modal.Title>
+        <button
+          className="bg-transparent border-0 "
+          onClick={() => {
+            props.onHide();
+            reset();
+            setStep(1);
+          }}
+        >
+          <IoIosClose className="fs-2" />
+        </button>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>

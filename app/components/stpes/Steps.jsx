@@ -1,6 +1,9 @@
 "use client";
 
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import { Carcalculate } from "@/app/hooks/calc/calc";
+import Image from "next/image";
 import { Form } from "react-bootstrap";
 
 export const renderStepContent = (form, step, carData, Citys) => {
@@ -12,7 +15,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
     case 1:
       return (
         <>
-          <Form.Label>Select a car</Form.Label>
+          <Form.Label className="my-1">Bir araba seçiniz</Form.Label>
           <Form.Select
             {...register("car", { required: "Car is required" })}
             name="car"
@@ -33,9 +36,12 @@ export const renderStepContent = (form, step, carData, Citys) => {
       return (
         <>
           <Form.Group controlId="names">
-            <Form.Label>Adı</Form.Label>
+            <Form.Label className="my-1">Adı</Form.Label>
             <Form.Control
-              {...register("names", { required: "Name is required" })}
+              {...register("names", {
+                required: "Name is required",
+                minLength: 3,
+              })}
               autoComplete="false"
               type="text"
               name="names"
@@ -43,9 +49,12 @@ export const renderStepContent = (form, step, carData, Citys) => {
             <p className="text-white fw-bold ">{errors.names?.message}</p>
           </Form.Group>{" "}
           <Form.Group controlId="surname">
-            <Form.Label>Soyad</Form.Label>
+            <Form.Label className="my-1">Soyad</Form.Label>
             <Form.Control
-              {...register("surname", { required: "Surname is required" })}
+              {...register("surname", {
+                required: "Surname is required",
+                minLength: 3,
+              })}
               autoComplete="false"
               type="text"
               name="surname"
@@ -59,9 +68,12 @@ export const renderStepContent = (form, step, carData, Citys) => {
       return (
         <>
           <Form.Group controlId="tc">
-            <Form.Label>TC Kimlik Numarası</Form.Label>
+            <Form.Label className="my-1">TC Kimlik Numarası</Form.Label>
             <Form.Control
-              {...register("tc", { required: "Tc id  is required" })}
+              {...register("tc", {
+                required: "Tc id  is required",
+                minLength: 11,
+              })}
               autoComplete="false"
               type="number"
               name="tc"
@@ -69,9 +81,13 @@ export const renderStepContent = (form, step, carData, Citys) => {
             <p className="text-white fw-bold ">{errors.tc?.message}</p>
           </Form.Group>
           <Form.Group controlId="age">
-            <Form.Label>Yaş</Form.Label>
+            <Form.Label className="my-1">Yaş</Form.Label>
             <Form.Control
-              {...register("age", { required: "Age  is required" })}
+              {...register("age", {
+                required: "Age  is required",
+                min: 18,
+                max: 60,
+              })}
               autoComplete="false"
               type="number"
               name="age"
@@ -84,24 +100,25 @@ export const renderStepContent = (form, step, carData, Citys) => {
       return (
         <>
           <Form.Group controlId="phone">
-            <Form.Label>Telefon</Form.Label>
-            <Form.Control
-              {...register("phone", { required: "Phone  is required" })}
-              autoComplete="false"
-              type="number"
-              name="phone"
+            <Form.Label className="my-1">Telefon</Form.Label>
+            <PhoneInput
+              country={"tr"}
+              {...register("phone")} // react-hook-form ile register kullanımı
+              onChange={(phone) => form.setValue("phone", phone)} // react-hook-form ile setValue kullanımı
             />
+
             <p className="text-white fw-bold ">{errors.phone?.message}</p>
           </Form.Group>
           <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
+            <Form.Label className="my-1">Email</Form.Label>
             <Form.Control
               {...register("email", { required: "Email  is required" })}
+              aria-invalid={errors.email ? "true" : "false"}
               autoComplete="false"
               type="email"
               name="email"
             />
-            <p className="text-white fw-bold">{errors.email?.message}</p>
+            {errors.mail && <p role="alert">{errors.email.message}</p>}
           </Form.Group>
         </>
       );
@@ -109,7 +126,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
       return (
         <>
           {" "}
-          <Form.Label>Alış Subesi</Form.Label>
+          <Form.Label className="my-1">Alış Subesi</Form.Label>
           <Form.Select
             {...register("aSube", { required: "Shopping branch  is required" })}
             autoComplete="false"
@@ -125,7 +142,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
             <p className="text-white fw-bold ">{errors.aSube?.message}</p>
           </Form.Select>
           <Form.Group controlId="alış-saati">
-            <Form.Label>Alış tarihi</Form.Label>
+            <Form.Label className="my-1">Alış tarihi</Form.Label>
             <Form.Control
               {...register("aTarihi", {
                 required: "Shopping Date  is required",
@@ -134,7 +151,9 @@ export const renderStepContent = (form, step, carData, Citys) => {
               type="datetime-local"
               name="alış-saati"
               onChange={(e) => {
-                form.setValue("aTarihi", e.target.value);
+                if (e.target) {
+                  form.setValue("aTarihi", e.target.value);
+                }
               }}
             />
             <p className="text-white fw-bold ">{errors.aTarihi?.message}</p>
@@ -144,7 +163,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
     case 6:
       return (
         <>
-          <Form.Label>Teslim Subesi</Form.Label>
+          <Form.Label className="my-1">Teslim Şubesi</Form.Label>
           <Form.Select
             {...register("vSube", {
               required: "Shopping Date  is required",
@@ -162,7 +181,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
             <p className="text-white fw-bold ">{errors.vSube?.message}</p>
           </Form.Select>
           <Form.Group controlId="teslim-saati">
-            <Form.Label>Teslim tarihi</Form.Label>
+            <Form.Label className="my-1">Teslim tarihi</Form.Label>
             <Form.Control
               {...register("vTarihi", {
                 required: "Buying Date  is required",
@@ -170,7 +189,9 @@ export const renderStepContent = (form, step, carData, Citys) => {
               type="datetime-local"
               name="teslim-saati"
               onChange={(e) => {
-                form.setValue("vTarihi", e.target.value);
+                if (e.target) {
+                  form.setValue("vTarihi", e.target.value);
+                }
               }}
             />
             <p className="text-white fw-bold ">{errors.vTarihi?.message}</p>
@@ -215,6 +236,46 @@ export const renderStepContent = (form, step, carData, Citys) => {
     case 9:
       const YourComponent = () => {
         const { data: calcData } = Carcalculate();
+        return (
+          <div>
+            <div className="w-100 ">
+              <Image
+                src={calcData?.image || ""}
+                className="w-100"
+                height={200}
+                width={200}
+                objectFit="cover"
+                objectPosition="center"
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+                alt="car"
+              />
+            </div>
+            <div className="d-flex justify-content-between align-items-center mt-2">
+              <div className="d-flex  justify-content-center  align-items-center">
+                <span className="">Toplam ücret: {"   "}</span>
+                <h5 className="text-success fw-bold ms-1">
+                  ${calcData?.total}
+                </h5>
+              </div>
+              <div className="d-flex  justify-content-center  align-items-center">
+                <span className="">Gün:</span>
+                <h6 className="ms-1 p-0 mb-0">{calcData?.Days}</h6>
+              </div>
+            </div>
+            <div className="d-flex justify-content-between align-items-center mt-2">
+              <div className="d-flex   justify-content-center  align-items-center">
+                <span className="">Marka:</span>
+                <h6 className="ms-1 p-0 mb-0">{calcData?.marka}</h6>
+              </div>
+              <div className="d-flex justify-content-center  align-items-center">
+                <span className="">Model:</span>
+                <h6 className="ms-1 p-0 mb-0">{calcData?.model}</h6>
+              </div>
+            </div>
+          </div>
+        );
       };
 
       return <YourComponent />;

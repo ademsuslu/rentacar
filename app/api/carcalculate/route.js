@@ -1,40 +1,62 @@
 import CarCalculate from "@/app/model/CarCalculate";
+import Settings from "@/app/model/Settings";
 import dbConnect from "@/app/util/dbConnet";
 import { NextResponse } from "next/server";
 
+//! Get işlemi
 export async function GET() {
   // Last child al ve hesaplama yap
   await dbConnect();
+  const Set = await Settings.findOne();
+
   const calc = await CarCalculate.find(); // findOne kullanıldı
 
   const lastCalc = calc[calc.length - 1];
 
   const { aTarihi, vTarihi, koltuk, sigorta, carData, car } = lastCalc;
-  // carData'nın bir dizi olup olmadığını kontrol et
   const carInfo = Array.isArray(carData) ? carData[0] : { _id: "", price: 0 };
   const CarInfo = car.split(",");
   const carId = CarInfo[0];
   const carPrice = parseInt(CarInfo[1]);
-  console.log("******************** car  ********************");
-  console.log(carPrice);
-  // .........................
-  // const carId = carInfo._id;
-  // carsın içindeki veri hesaplanack
+
+  const carDetail = carData.find((item) => item._id === carId);
 
   const dateDiff = (date1, date2) => {
     const diff = new Date(date2).getTime() - new Date(date1).getTime();
-    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+    let daysDiff = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
+    if (daysDiff === 0) {
+      daysDiff += 1;
+    }
+
+    return daysDiff;
   };
 
-  const gun = dateDiff(aTarihi, vTarihi);
+  const Days = dateDiff(aTarihi, vTarihi);
   const koltukUcreti = koltuk ? 10 : 0;
   const sigortaUcreti = sigorta ? 100 : 0;
-  const toplamUcret = gun * carPrice + koltukUcreti + sigortaUcreti;
-  const HesapDetay = { toplamUcret, gun };
+  const { vatRate, profitPerpentage, serviceFee } = Set;
+  const toplamUcret = Days * carPrice + koltukUcreti + sigortaUcreti;
+  const kdvUcretı = toplamUcret * vatRate;
+  const total = toplamUcret + kdvUcretı;
+
+  const { marka, model, image, fiyat } = carDetail;
+  const HesapDetay = {
+    total,
+    Days,
+    marka,
+    model,
+    image,
+    fiyat,
+    vatRate,
+    profitPerpentage,
+    serviceFee,
+  };
 
   return NextResponse.json(HesapDetay);
 }
 
+//! Post işlemi
 export async function POST(request) {
   await dbConnect();
   const res = await request.json();
