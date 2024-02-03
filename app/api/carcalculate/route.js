@@ -1,24 +1,29 @@
-import CarCalculate from "@/app/model/CarCalculate";
 import Settings from "@/app/model/Settings";
 import dbConnect from "@/app/util/dbConnet";
 import { NextResponse } from "next/server";
 
 //! Get işlemi
-export async function GET() {
+// body içinden gelen bilgilere göre hesaplama yap
+// gelen bilgiler; araç idsi, alış tarihi, teslim tarihi, özelikler
+// toplamFiyat = aracFiyatı + (aracFiyatı * vatRate / 100) + özellik fiyatları
+// bu fiyatı frontende gönder
+export async function POST(request) {
   // Last child al ve hesaplama yap
   await dbConnect();
-  const Set = await Settings.findOne();
 
-  const calc = await CarCalculate.find(); // findOne kullanıldı
+  const s = await Settings.findOne();
+  const req = await request.json();
 
-  const lastCalc = calc[calc.length - 1];
+  const { MergeForm, carData } = req;
+  console.log(req);
+  const { aTarihi, vTarihi, koltuk, sigorta, car } = MergeForm;
+  if (!s) return NextResponse.error("Settings null");
 
-  const { aTarihi, vTarihi, koltuk, sigorta, carData, car } = lastCalc;
-  const carInfo = Array.isArray(carData) ? carData[0] : { _id: "", price: 0 };
+  const carInfo = Object(car) ? car[0] : { _id: "", price: 0 };
+  console.log("car Info: ", carInfo);
   const CarInfo = car.split(",");
   const carId = CarInfo[0];
   const carPrice = parseInt(CarInfo[1]);
-
   const carDetail = carData.find((item) => item._id === carId);
 
   const dateDiff = (date1, date2) => {
@@ -35,7 +40,7 @@ export async function GET() {
   const Days = dateDiff(aTarihi, vTarihi);
   const koltukUcreti = koltuk ? 10 : 0;
   const sigortaUcreti = sigorta ? 100 : 0;
-  const { vatRate, profitPerpentage, serviceFee } = Set;
+  const { vatRate, profitPerpentage, serviceFee } = s;
   const toplamUcret = Days * carPrice + koltukUcreti + sigortaUcreti;
   const kdvUcretı = toplamUcret * vatRate;
   const total = toplamUcret + kdvUcretı;
@@ -54,34 +59,4 @@ export async function GET() {
   };
 
   return NextResponse.json(HesapDetay);
-}
-
-//! Post işlemi
-export async function POST(request) {
-  await dbConnect();
-  const res = await request.json();
-  const { MergeForm, carData } = res;
-  const { aTarihi, car, vTarihi, koltuk, sigorta } = MergeForm;
-
-  const data = {
-    aTarihi,
-    vTarihi,
-    koltuk,
-    sigorta,
-    carData,
-    car,
-  };
-  const calc = await CarCalculate.create(data);
-
-  if (!calc) {
-    throw new Error("Car create for failded");
-  }
-  return new NextResponse(calc, {
-    status: 201,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    },
-  });
 }

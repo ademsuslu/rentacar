@@ -54,17 +54,20 @@ export default function Modals(props) {
       sözleşme: true,
     },
   });
-
+  const [detay, setDetay] = useState();
   const { handleSubmit, reset } = form;
   const mutation = useMutation({
     mutationFn: (Merge) => createCalc(Merge),
     onError: (error) => {
       console.log(error.message);
     },
+    onSuccess: (data) => {
+      setDetay(data?.data);
+    },
   });
+
   const onSubmit = (data) => {
     const { aTarihi, vTarihi, koltuk, sigorta, car } = data;
-
     const MergeForm = { aTarihi, vTarihi, koltuk, sigorta, car };
     const Merge = {
       MergeForm,
@@ -98,7 +101,7 @@ export default function Modals(props) {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          {renderStepContent(form, step, carData, Citys)}
+          {renderStepContent(form, step, carData, Citys, detay)}
         </Form>
       </Modal.Body>
       <Modal.Footer>

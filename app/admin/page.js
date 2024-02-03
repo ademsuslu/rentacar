@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { createSetting } from "../hooks/setting/setting";
+import toast from "react-hot-toast";
 
 export default function Page() {
   const form = useForm({
@@ -14,7 +15,7 @@ export default function Page() {
   });
   const {
     register,
-    formState: { errors },
+    formState: { dirtyFields, errors },
   } = form;
   const { handleSubmit, reset } = form;
   const mutation = useMutation({
@@ -22,10 +23,28 @@ export default function Page() {
     onError: (error) => {
       console.log(error.message);
     },
+    onSuccess: (data) => {
+      toast.success("Fiyatlar değiştirildi!");
+      form.reset(data);
+    },
   });
+
+  function dirtyValues(dirtyFields, allValues) {
+    // If any item in an array was modified, the entire array must be submitted, because there's no way to indicate
+    // "placeholders" for unchanged elements. dirtyFields is true for leaves.
+    if (dirtyFields === true || Array.isArray(dirtyFields)) return allValues;
+    // Here, we have an object
+    return Object.fromEntries(
+      Object.keys(dirtyFields).map((key) => [
+        key,
+        dirtyValues(dirtyFields[key], allValues[key]),
+      ])
+    );
+  }
+
   const onSubmit = (data) => {
-    mutation.mutate(data);
-    reset();
+    const body = dirtyValues(dirtyFields, data);
+    mutation.mutate(body);
   };
 
   return (

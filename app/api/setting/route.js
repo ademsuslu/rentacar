@@ -17,10 +17,17 @@ export async function GET() {
 export async function PUT(request) {
   const req = await request.json();
   try {
-    // Update settings
-    const updatedSettings = await Settings.findOneAndUpdate(req);
+    //   Update settings
+    const updatedSettings = await Settings.findOneAndUpdate(
+      {},
+
+      {
+        $set: req,
+      },
+      { new: true }
+    );
     return NextResponse.json(updatedSettings);
   } catch (error) {
-    return NextResponse.error("somethink went wrong ", updatedSettings);
+    return NextResponse.error("Bir hata oluştu ", error);
   }
 }

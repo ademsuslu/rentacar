@@ -6,7 +6,7 @@ import { Carcalculate } from "@/app/hooks/calc/calc";
 import Image from "next/image";
 import { Form } from "react-bootstrap";
 
-export const renderStepContent = (form, step, carData, Citys) => {
+export const renderStepContent = (form, step, carData, Citys, detay) => {
   const {
     register,
     formState: { errors },
@@ -243,7 +243,7 @@ export const renderStepContent = (form, step, carData, Citys) => {
       );
     case 9:
       const YourComponent = () => {
-        const { data: calcData } = Carcalculate();
+        const calcData = detay;
         return (
           <div>
             <div className="w-100 ">
