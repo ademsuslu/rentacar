@@ -32,7 +32,7 @@ const KiralamaKosullari = () => {
       </Row>
 
       <Row className="my-4 flex-column ">
-        {data?.data.map((item) => {
+        {data?.map((item) => {
           if (status === "error") {
             return (
               <Container>
