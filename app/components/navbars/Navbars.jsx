@@ -1,5 +1,8 @@
 "use client";
 import { SlCalender } from "react-icons/sl";
+import { IoMdLogIn } from "react-icons/io";
+import { RiLogoutCircleLine } from "react-icons/ri";
+
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,10 +13,11 @@ import { NavData } from "../data/Data";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import Modals from "../modals/Modals";
+import { signIn, signOut, useSession } from "next-auth/react";
 function Navbars() {
   const [activeLink, setActiveLink] = useState("");
   const [modalShow, setModalShow] = useState(false);
-
+  const { status } = useSession();
   return (
     <Container fluid>
       <Row>
@@ -42,6 +46,22 @@ function Navbars() {
                   </Link>
                 ))}
               </Nav>
+              <div className="m-3">
+                {status === "authenticated" ? (
+                  <>
+                    <IoMdLogIn
+                      className="cursor-pointer fs-4"
+                      onClick={() => signOut()}
+                    />
+                  </>
+                ) : (
+                  <RiLogoutCircleLine
+                    className="cursor-pointer fs-4"
+                    onClick={() => signIn("google")}
+                  />
+                )}
+              </div>
+
               <Button
                 onClick={() => setModalShow(true)}
                 className="fs-6 btn-orange  font-normal"

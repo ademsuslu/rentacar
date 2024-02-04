@@ -12,24 +12,27 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { NextAuthProvider } from "./Providers";
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient();
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className} suppressHydrationWarning={true}>
-        <Toaster />
-        <QueryClientProvider client={queryClient}>
-          <Container className="app-container" fluid>
-            <Row className="justify-content-center">
-              <Col lg={10}>
-                <Navbars />
-                {children}
-              </Col>
-            </Row>
-          </Container>
-          <Footer />
-        </QueryClientProvider>
+        <NextAuthProvider>
+          <Toaster />
+          <QueryClientProvider client={queryClient}>
+            <Container className="app-container" fluid>
+              <Row className="justify-content-center">
+                <Col lg={10}>
+                  <Navbars />
+                  {children}
+                </Col>
+              </Row>
+            </Container>
+            <Footer />
+          </QueryClientProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
