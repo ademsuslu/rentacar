@@ -14,7 +14,9 @@ export default function Home() {
         <Hero />
       </Row>
       <Row>
-        <h1 className="my-5">Rezervasyon Componenti</h1>
+        <Col className="my-5 d-flex justify-content-center align-items-center">
+          <input type="text" placeholder="Search" className="form-control" />
+        </Col>
       </Row>
 
       <Row className="my-3 gap-2 justify-content-around     ">

@@ -74,7 +74,7 @@ export default function Page() {
                 type="text"
                 name="profitPerpentage"
                 inputMode="numeric"
-                placeholder="20%"
+                placeholder="15%"
               />
             </Form.Group>
             <Form.Group className="my-4" controlId="serviceFee">
@@ -85,7 +85,7 @@ export default function Page() {
                 type="text"
                 name="serviceFee"
                 inputMode="numeric"
-                placeholder="20%"
+                placeholder="10%"
               />
             </Form.Group>
             <Button onClick={handleSubmit(onSubmit)} className="btn btn-orange">
