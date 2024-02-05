@@ -1,6 +1,7 @@
 "use client";
 import Hero from "./components/Hero/Hero";
 import { useCarData } from "@/app/hooks/getallcar/getAllcar";
+import Search from "./components/search/Search";
 import { Col, Container, Row } from "react-bootstrap";
 import { SyncLoader } from "react-spinners";
 import CarData from "./components/cars/CarData";
@@ -15,7 +16,7 @@ export default function Home() {
       </Row>
       <Row>
         <Col className="my-5 d-flex justify-content-center align-items-center">
-          <input type="text" placeholder="Search" className="form-control" />
+          <Search />
         </Col>
       </Row>
 

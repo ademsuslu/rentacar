@@ -21,3 +21,15 @@
 //   const toplamUcret = gun * carPrice + koltukUcreti + sigortaUcreti;
 //   return { toplamUcret, gun };
 // };
+
+/* Backend Search ıcın  */
+// const cars = req.query;
+// const fuzzySearch = (cars) => {
+//   const fuzzySearchFilter = {};
+//   Object.keys(cars).forEach((key) => {
+//     fuzzySearchFilter[key] = { $regex: cars[key], $options: "i" }; // 'i' for case-insensitive matching
+//   });
+//   return fuzzySearchFilter;
+// };
+// const filter = fuzzySearch(cars);
+// const results = await Car.find(filter);
