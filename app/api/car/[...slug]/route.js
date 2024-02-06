@@ -1,6 +1,5 @@
 import Car from "@/app/model/CarModel";
 import dbConnect from "@/app/util/dbConnet";
-import { NextResponse } from "next/server";
 
 //delete
 export async function DELETE(request, { params }) {
@@ -16,7 +15,7 @@ export async function DELETE(request, { params }) {
       throw new Error("Delete Car is not defined!");
     }
 
-    return new NextResponse(deleteCar, {
+    return Response.json(deleteCar, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -26,7 +25,7 @@ export async function DELETE(request, { params }) {
     });
   } catch (err) {
     console.error(err);
-    return new NextResponse("Post silme başarısız oldu!", {
+    return Response.json("Post silme başarısız oldu!", {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -55,7 +54,7 @@ export async function PUT(request, { params }) {
     if (!updateCar) {
       throw new Error("Updated Car is not defined!");
     }
-    return new NextResponse(updateCar, {
+    return new Response(updateCar, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -65,7 +64,7 @@ export async function PUT(request, { params }) {
     });
   } catch (error) {
     console.error(error);
-    return new NextResponse("Ürün güncellenirken bir hata oluştu.", {
+    return new Response("Ürün güncellenirken bir hata oluştu.", {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -85,7 +84,7 @@ export async function GET(request, { params }) {
   if (!car) {
     throw new Error("Car is not defined");
   }
-  return new NextResponse(car, {
+  return new Response(car, {
     status: 200,
     headers: {
       "Access-Control-Allow-Origin": "*",

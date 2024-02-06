@@ -1,47 +1,53 @@
 "use client";
+import { IoSearchCircleOutline } from "react-icons/io5";
 import axios from "axios";
 import { useState } from "react";
+import SearchResult from "./searchresult/SearchResult";
 
 export default function Search() {
   const [query, setQuery] = useState("");
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return function () {
-      const context = this;
-      const args = arguments;
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func.apply(context, args), delay);
-    };
-  };
+  const [results, setResults] = useState();
 
   const handleSearch = async () => {
     try {
       // POST isteği
+      setQuery("");
+      const body = JSON.stringify(query);
 
       const response = await axios.post(
-        "http://localhost:3000/api/searchs",
-        JSON.stringify({ query })
+        "http://localhost:3000/api/car/search",
+        body
       );
-      console.log("*****************");
-      console.log(response);
+      setResults(response.data);
       return response;
-      // return await response.json();
     } catch (error) {
       console.error("Arama hatası:", error);
     }
   };
-
-  const debouncedSearch = debounce(handleSearch, 500); // 500 milisaniyelik gecikme
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-    debouncedSearch(); // Debounced fonksiyonu çağır
-  };
-
+  setTimeout(() => {
+    setResults(null);
+  }, 15000);
   return (
-    <div>
-      <input type="text" value={query} onChange={handleChange} />
+    <div className="bg-white w-40  rounded p-2">
+      <div className="d-flex align-items-center justify-content-between ">
+        <input
+          type="text"
+          style={{ outline: "none" }}
+          className="border-0"
+          value={query}
+          placeholder="Arama yapın..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button
+          className="bg-white border-0 outline-none"
+          onClick={() => handleSearch()}
+        >
+          <IoSearchCircleOutline className="fs-3  saklıdır" />
+        </button>
+      </div>
+      <div className={`  ${results ? "d-block" : "d-none"}`}>
+        <SearchResult results={results} />
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ blob:https://web.whatsapp.com/6828dbdf-7cd5-408a-8d4f-59f72bfd6793 ?
 
 Todos:
 
-1. Search
+1. genel -> ad, soyad, eposta, şifre değiştir, profil fotosu
 2. next-auth
 3. google haritalar eklenecek
 4. Fiyat Karşılaştırma: Benzer araçları ve hizmetleri diğer kiralama firmalarıyla karşılaştırmak için bir fiyat karşılaştırma özelliği ekleyin. Bu, müşterilere en uygun seçeneği bulmalarında yardımcı olabilir.

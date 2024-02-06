@@ -1,6 +1,5 @@
 import Settings from "@/app/model/Settings";
 import dbConnect from "@/app/util/dbConnet";
-import { NextResponse } from "next/server";
 
 //! Get işlemi
 // body içinden gelen bilgilere göre hesaplama yap
@@ -17,7 +16,7 @@ export async function POST(request) {
   const { MergeForm, carData } = req;
   console.log(req);
   const { aTarihi, vTarihi, koltuk, sigorta, car } = MergeForm;
-  if (!s) return NextResponse.error("Settings null");
+  if (!s) return Response.error("Settings null");
 
   const carInfo = Object(car) ? car[0] : { _id: "", price: 0 };
   console.log("car Info: ", carInfo);
@@ -58,5 +57,5 @@ export async function POST(request) {
     serviceFee,
   };
 
-  return NextResponse.json(HesapDetay);
+  return Response.json(HesapDetay);
 }

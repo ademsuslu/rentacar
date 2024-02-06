@@ -21,7 +21,6 @@
 //   const toplamUcret = gun * carPrice + koltukUcreti + sigortaUcreti;
 //   return { toplamUcret, gun };
 // };
-
 /* Backend Search ıcın  */
 // const cars = req.query;
 // const fuzzySearch = (cars) => {
