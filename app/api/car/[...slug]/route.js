@@ -54,7 +54,7 @@ export async function PUT(request, { params }) {
     if (!updateCar) {
       throw new Error("Updated Car is not defined!");
     }
-    return new Response(updateCar, {
+    return Response(updateCar, {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -64,7 +64,7 @@ export async function PUT(request, { params }) {
     });
   } catch (error) {
     console.error(error);
-    return new Response("Ürün güncellenirken bir hata oluştu.", {
+    return Response("Ürün güncellenirken bir hata oluştu.", {
       status: 500,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -77,19 +77,13 @@ export async function PUT(request, { params }) {
 
 export async function GET(request, { params }) {
   await dbConnect();
+  const id = params?.slug[0];
 
-  const { slug } = params;
+  const car = await Car.findById(id);
 
-  const car = await Car.findById(slug);
   if (!car) {
     throw new Error("Car is not defined");
   }
-  return new Response(car, {
-    status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    },
-  });
+  const data = JSON.stringify(car);
+  return new Response(data);
 }

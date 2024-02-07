@@ -18,6 +18,5 @@ export async function POST(request) {
   const filter = fuzzySearch({ marka: req });
 
   const res = await Car.find(filter);
-
   return Response.json({ data: res }); // datayı direkt olarak objecte cevırdı
 }

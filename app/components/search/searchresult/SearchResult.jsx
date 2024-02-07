@@ -8,7 +8,7 @@ export default function SearchResult(results) {
         <li className="list-unstyled" key={item._id}>
           <hr />
           <Link
-            href="/"
+            href={`/cardetay/${item._id}`}
             className="d-flex align-items-center text-decoration-none saklıdır"
           >
             <span className="me-3">
