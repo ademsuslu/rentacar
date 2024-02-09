@@ -1,5 +1,3 @@
-"use client";
-
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { createItem, getItems } from "../api/deneme/route";
 
