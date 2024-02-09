@@ -1,8 +1,8 @@
 "use client";
+import { createSetting } from "@/app/hooks/setting/setting";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { createSetting } from "../hooks/setting/setting";
 import toast from "react-hot-toast";
 
 export default function Page() {
@@ -48,8 +48,7 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <h1>Settings</h1>
+    <div className="">
       <div>
         <h2>Pricing</h2>
         <div className="d-flex gap-3">

@@ -14,12 +14,16 @@ import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import Modals from "../modals/Modals";
 import { signIn, signOut, useSession } from "next-auth/react";
+
+import { usePathname } from "next/navigation";
 function Navbars() {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/dashboard");
   const [activeLink, setActiveLink] = useState("");
   const [modalShow, setModalShow] = useState(false);
   const { status } = useSession();
   return (
-    <Container fluid>
+    <Container fluid className={`${isAdminPage && "d-none"}`}>
       <Row>
         <Col className="p-0">
           <Navbar expand="md">

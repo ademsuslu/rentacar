@@ -13,9 +13,13 @@ import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { NextAuthProvider } from "./Providers";
+import { usePathname } from "next/navigation";
 const queryClient = new QueryClient();
 // const queryClient = new QueryClient();
+
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/dashboard");
   return (
     <html lang="en">
       <body className={montserrat.className} suppressHydrationWarning={true}>
@@ -23,8 +27,11 @@ export default function RootLayout({ children }) {
           <Toaster />
           <QueryClientProvider client={queryClient}>
             <Container className="app-container" fluid>
-              <Row className="justify-content-center">
-                <Col lg={10}>
+              <Row className={`justify-content-center`}>
+                <Col
+                  lg={!isAdminPage && 10}
+                  className={`justify-content-center ${isAdminPage && "p-0"} `}
+                >
                   <Navbars />
                   {children}
                 </Col>

@@ -160,3 +160,15 @@ body::-webkit-scrollbar-thumb {
     margin-top: 2rem !important;
   }
 }
+
+.dashboard {
+  background-color: #201d48;
+}
+.border-ends {
+  border-right: 1px solid #fff !important;
+}
+@media (max-width: 991px) {
+  .border-ends {
+    border-right: 0px !important;
+  }
+}

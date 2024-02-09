@@ -6,9 +6,12 @@ import Link from "next/link";
 import { IoLogoInstagram } from "react-icons/io";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { FaFacebookF } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 const Footer = () => {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/dashboard");
   return (
-    <Container fluid className="mt-5">
+    <Container fluid className={` mt-5 ${isAdminPage && "d-none"} `}>
       <Row className="justify-content-between flex-column-reverse flex-md-row">
         <Col className="px-2  mb-sm-4 footer-col  ">
           <h4> Yola Çık!</h4>

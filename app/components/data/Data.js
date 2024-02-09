@@ -1,4 +1,11 @@
+import { GiPriceTag } from "react-icons/gi";
+import { CiUser } from "react-icons/ci";
+
 export const NavData = [
+  {
+    name: "dashboard",
+    url: "/dashboard",
+  },
   {
     name: "Hakkımızda",
     url: "/about",
@@ -270,4 +277,17 @@ export const blogData = [
       "Yılbaşı tatilinizi planlarken dikkate almanız gereken araç kiralama ipuçları.",
   },
   // Dilerseniz daha fazla blog içeriği ekleyebilir veya mevcutları özelleştirebilirsiniz.
+];
+
+export const DashboardNavData = [
+  {
+    name: "Prices",
+    url: "/dashboard/price",
+    icon: <GiPriceTag />,
+  },
+  {
+    name: "User Info",
+    url: "/dashboard/user",
+    icon: <CiUser />,
+  },
 ];
