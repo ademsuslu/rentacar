@@ -34,7 +34,7 @@ Next-auth, React-hook-form, React-Query
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-#Proje_Info
+#Dashboard
 
 ![Proje_Info](https://github.com/ademsuslu/rentacar/raw/main/public/%C4%B1nfo.jpeg)
 
