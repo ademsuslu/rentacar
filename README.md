@@ -16,12 +16,16 @@ Next-auth, React-hook-form, React-Query
 
 `npm i`
 
+ or 
+
+`npm install`
+
 **+** Then run it with the 
 
-`npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev` command
+`npm run dev`
+ or
+`yarn dev`
+ or
+`pnpm dev`
+ or
+`bun dev` command
