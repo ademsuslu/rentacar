@@ -18,4 +18,10 @@ Next-auth, React-hook-form, React-Query
 
 **+** Then run it with the 
 
-`npm run dev` command
+`npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev` command
