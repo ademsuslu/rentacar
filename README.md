@@ -1,3 +1,7 @@
-Kullanıcıdan ödeme bilgilerini alın. Güvenli bir ödeme geçişi sağlamak için SSL şifrelemesi kullanın.
-Kullanıcıya rezervasyonun başarıyla tamamlandığına dair bir onay sayfası gösterin. Ayrıca kullanıcının rezervasyon bilgilerini e-posta veya SMS ile göndererek onu bilgilendirin.
-Kullanıcıya bir geribildirim anketi sunabilir ve son işlem için teşekkür eden bir mesaj gösterebilirsiniz.
+**Car rental site**
+
+**Site About**
+
+The site where the vehicles are listed and calculated according to the number of days and vehicle price and displayed to the customer and where the vehicle is rented.
+**Tools**
+Next-auth, React-hook-form, React-Query
