@@ -9,8 +9,13 @@ Next-auth, React-hook-form, React-Query
 **How to start**
 
 **+** After downloading the project
+
 **+** Open it with vscode
+
 **+** then in the project directory
+
 `npm i`
+
 **+** Then run it with the 
+
 `npm run dev` command
