@@ -12,7 +12,7 @@ Next-auth, React-hook-form, React-Query
 
 **+** Open it with vscode
 
-**+** then in the project directory
+**+** Then in the project directory
 
 `npm i`
 
